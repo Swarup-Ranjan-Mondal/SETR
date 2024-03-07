@@ -128,6 +128,7 @@ class LoadAnnotations(object):
                                 results['ann_info']['seg_map'])
         else:
             filename = results['ann_info']['seg_map']
+        filename = filename.replace("_gtFine_labelTrainIds", "_gtFine_labelIds") # added this to resolve file not found error
         img_bytes = self.file_client.get(filename)
         gt_semantic_seg = mmcv.imfrombytes(
             img_bytes, flag='unchanged',
